@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fd Calculator`</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="mon" placeholder="Enter month as input">
+        <button onclick="calculateFdRate()">Calculate FD Rate</button>
+        <p id="output" class="sentence">FD Rates:</p>
+    </div>
+    <script>
+        function calculateFdRate(){
+        let mon =parseInt(document.getElementById("mon").value,10);
+        
+        if (isNaN(mon)) {
+                document.getElementById("output").textContent = "Please enter a valid number.";
+                return;
+            }
+        let rate ="";
+        if(mon<3){
+            rate = "5.8%"
+        }
+        else if(mon>=3 && mon<6){
+            rate = "6.5%";
+        }
+        else if(mon>=7 && mon<9){
+            rate = "6.8%"
+        }
+        else if(mon>=10){
+            rate = "7%";
+        }
+        else{
+            rate= "Please Enter Valid Range";
+        }
+        document.getElementById("output").textContent = `FD Rates: ${rate}`;
+    }
+
+    </script>
+    
+</body>
+</html>

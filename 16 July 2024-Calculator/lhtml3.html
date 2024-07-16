@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eb Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        input[type="number"], button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p#result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Electricity Bill Calculator</h2>
+        <label for="units">Enter units consumed:</label>
+        <input type="number" id="units" min="0">
+        <button onclick="calculateBill()">Calculate Bill</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateBill() {
+            let units = parseInt(document.getElementById("units").value);
+
+            if (isNaN(units) || units < 0) {
+                document.getElementById("result").textContent = "Please enter a valid number of units.";
+                return;
+            }
+
+            let billAmount = 0;
+            
+            if (units <= 50) {
+                billAmount = units * 0.75;
+            } else if (units > 50 && units <= 150) {
+                billAmount = (50 * 0.75) + ((units - 50) * 1.00);
+            } else if (units > 150 && units <= 250) {
+                billAmount = (50 * 0.75) + (100 * 1.00) + ((units - 150) * 1.30);
+            } else if (units > 250) {
+                billAmount = (50 * 0.75) + (100 * 1.00) + (100 * 1.30) + ((units - 250) * 1.50);
+            }
+
+            document.getElementById("result").textContent = `Your electricity bill amount is Rs ${billAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
